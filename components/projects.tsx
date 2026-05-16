@@ -3,41 +3,12 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { ArrowUpRight } from "lucide-react"
-
-const projects = [
-  {
-    title: "Brand Identity System",
-    category: "Design",
-    description:
-      "Complete brand identity design including logo, color palette, typography system, and brand guidelines for a local startup.",
-    year: "2024",
-  },
-  {
-    title: "Social Media Campaign",
-    category: "Digital Marketing",
-    description:
-      "Strategic social media campaign that increased engagement by 200% through compelling visual content and targeted messaging.",
-    year: "2024",
-  },
-  {
-    title: "Print Catalog Design",
-    category: "Print Design",
-    description:
-      "Premium product catalog design featuring modern layout, professional photography editing, and print-ready production files.",
-    year: "2023",
-  },
-  {
-    title: "Event Poster Series",
-    category: "Graphic Design",
-    description:
-      "A series of event posters combining bold typography with creative visual compositions for university cultural events.",
-    year: "2023",
-  },
-]
+import { useLanguage } from "@/lib/i18n/context"
 
 export function Projects() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t } = useLanguage()
 
   return (
     <section id="projects" className="border-t border-border py-32 lg:py-40" ref={ref}>
@@ -50,21 +21,22 @@ export function Projects() {
         >
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-accent">
-              04 &mdash; Projects
+              {t.projects.section_label}
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-foreground lg:text-4xl">
-              Selected <span className="font-serif italic">work</span>
+              {t.projects.heading}{" "}
+              <span className="font-serif italic">{t.projects.heading_italic}</span>
             </h2>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-            A curated selection of projects showcasing my range in design, digital strategy, and creative problem-solving.
+            {t.projects.subtitle}
           </p>
         </motion.div>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          {projects.map((project, i) => (
+          {t.projects.items.map((project, i) => (
             <motion.div
-              key={project.title}
+              key={i}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -89,7 +61,7 @@ export function Projects() {
                 </p>
               </div>
               <div className="mt-8 flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-accent">
-                View project
+                {t.projects.view_project}
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </div>
             </motion.div>

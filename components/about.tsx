@@ -1,12 +1,20 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import { useLanguage } from "@/lib/i18n/context"
 
 export function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t } = useLanguage()
+
+  const stats = [
+    { number: "2+", label: t.about.stats.experience },
+    { number: "15+", label: t.about.stats.projects },
+    { number: "10+", label: t.about.stats.clients },
+    { number: "5+", label: t.about.stats.skills },
+  ]
 
   return (
     <section id="about" className="py-32 lg:py-40" ref={ref}>
@@ -19,10 +27,11 @@ export function About() {
             className="lg:col-span-4"
           >
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-accent">
-              01 &mdash; About
+              {t.about.section_label}
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-foreground lg:text-4xl">
-              Who I <span className="font-serif italic">am</span>
+              {t.about.heading}{" "}
+              <span className="font-serif italic">{t.about.heading_italic}</span>
             </h2>
           </motion.div>
 
@@ -33,23 +42,14 @@ export function About() {
             className="lg:col-span-8"
           >
             <p className="text-xl leading-relaxed text-muted-foreground lg:text-2xl lg:leading-relaxed">
-              A detail-oriented individual with experience in customer service, printing operations,
-              Photoshop, communication, and digital work. Passionate about bridging the gap between
-              management strategy and creative digital solutions.
+              {t.about.bio_1}
             </p>
             <p className="mt-8 text-lg leading-relaxed text-muted-foreground">
-              I believe in the power of thoughtful design and strategic thinking to transform ideas
-              into impactful experiences. Currently pursuing my Management degree while actively
-              exploring the intersection of business and digital creativity.
+              {t.about.bio_2}
             </p>
 
             <div className="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
-              {[
-                { number: "2+", label: "Years Experience" },
-                { number: "15+", label: "Projects Done" },
-                { number: "10+", label: "Happy Clients" },
-                { number: "5+", label: "Skills Mastered" },
-              ].map((stat, i) => (
+              {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}

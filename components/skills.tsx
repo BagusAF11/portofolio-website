@@ -2,49 +2,51 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-
-const skills = [
-  {
-    category: "Design",
-    items: [
-      { name: "Adobe Photoshop", level: 85 },
-      { name: "Graphic Design", level: 80 },
-      { name: "Visual Communication", level: 75 },
-      { name: "Layout & Typography", level: 70 },
-    ],
-  },
-  {
-    category: "Management",
-    items: [
-      { name: "Customer Service", level: 90 },
-      { name: "Project Management", level: 75 },
-      { name: "Team Communication", level: 85 },
-      { name: "Strategic Planning", level: 70 },
-    ],
-  },
-  {
-    category: "Digital",
-    items: [
-      { name: "Digital Marketing", level: 70 },
-      { name: "Content Creation", level: 80 },
-      { name: "Social Media", level: 85 },
-      { name: "Data Analysis", level: 65 },
-    ],
-  },
-  {
-    category: "Technical",
-    items: [
-      { name: "Printing Operations", level: 90 },
-      { name: "Office Suite", level: 85 },
-      { name: "File Management", level: 80 },
-      { name: "Quality Control", level: 75 },
-    ],
-  },
-]
+import { useLanguage } from "@/lib/i18n/context"
 
 export function Skills() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t } = useLanguage()
+
+  const skills = [
+    {
+      category: t.skills.categories.design,
+      items: [
+        { name: t.skills.items.photoshop, level: 85 },
+        { name: t.skills.items.graphic_design, level: 80 },
+        { name: t.skills.items.visual_communication, level: 75 },
+        { name: t.skills.items.layout_typography, level: 70 },
+      ],
+    },
+    {
+      category: t.skills.categories.management,
+      items: [
+        { name: t.skills.items.customer_service, level: 90 },
+        { name: t.skills.items.project_management, level: 75 },
+        { name: t.skills.items.team_communication, level: 85 },
+        { name: t.skills.items.strategic_planning, level: 70 },
+      ],
+    },
+    {
+      category: t.skills.categories.digital,
+      items: [
+        { name: t.skills.items.digital_marketing, level: 70 },
+        { name: t.skills.items.content_creation, level: 80 },
+        { name: t.skills.items.social_media, level: 85 },
+        { name: t.skills.items.data_analysis, level: 65 },
+      ],
+    },
+    {
+      category: t.skills.categories.technical,
+      items: [
+        { name: t.skills.items.printing_operations, level: 90 },
+        { name: t.skills.items.office_suite, level: 85 },
+        { name: t.skills.items.file_management, level: 80 },
+        { name: t.skills.items.quality_control, level: 75 },
+      ],
+    },
+  ]
 
   return (
     <section id="skills" className="border-t border-border py-32 lg:py-40" ref={ref}>
@@ -56,10 +58,11 @@ export function Skills() {
           className="mb-20"
         >
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-accent">
-            02 &mdash; Skills
+            {t.skills.section_label}
           </p>
           <h2 className="mt-4 text-3xl font-light tracking-tight text-foreground lg:text-4xl">
-            What I <span className="font-serif italic">do</span>
+            {t.skills.heading}{" "}
+            <span className="font-serif italic">{t.skills.heading_italic}</span>
           </h2>
         </motion.div>
 

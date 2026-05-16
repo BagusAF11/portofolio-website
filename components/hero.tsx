@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion"
 import { ArrowDown } from "lucide-react"
+import { useLanguage } from "@/lib/i18n/context"
 
 export function Hero() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      {/* Subtle gradient orb */}
       <div className="pointer-events-none absolute top-1/4 right-0 h-[600px] w-[600px] translate-x-1/4 rounded-full bg-accent/5 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] -translate-x-1/4 rounded-full bg-accent/3 blur-3xl" />
 
@@ -19,7 +21,7 @@ export function Hero() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="mb-6 text-sm font-medium uppercase tracking-[0.3em] text-accent">
-                Portfolio 2026
+                {t.hero.badge}
               </p>
             </motion.div>
 
@@ -40,7 +42,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="mt-8 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl"
             >
-              Management Student &amp; Creative Digital Enthusiast
+              {t.hero.tagline}
             </motion.p>
 
             <motion.div
@@ -53,13 +55,13 @@ export function Hero() {
                 href="#contact"
                 className="group inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-3.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-accent hover:text-background"
               >
-                Get in touch
+                {t.hero.cta_primary}
               </a>
               <a
                 href="#projects"
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
               >
-                View work
+                {t.hero.cta_secondary}
                 <span className="text-accent">&rarr;</span>
               </a>
             </motion.div>
@@ -73,18 +75,24 @@ export function Hero() {
           >
             <div className="flex flex-col items-end gap-6 text-right">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Based in</p>
-                <p className="mt-1 text-sm text-foreground">Indonesia</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  {t.hero.location_label}
+                </p>
+                <p className="mt-1 text-sm text-foreground">{t.hero.location_value}</p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Focus</p>
-                <p className="mt-1 text-sm text-foreground">Digital &amp; Creative</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  {t.hero.focus_label}
+                </p>
+                <p className="mt-1 text-sm text-foreground">{t.hero.focus_value}</p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Status</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  {t.hero.status_label}
+                </p>
                 <p className="mt-1 flex items-center gap-2 text-sm text-foreground">
                   <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
-                  Available
+                  {t.hero.status_value}
                 </p>
               </div>
             </div>
@@ -102,7 +110,7 @@ export function Hero() {
             className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-300 hover:text-foreground"
           >
             <ArrowDown className="h-4 w-4 animate-bounce" />
-            Scroll to explore
+            {t.hero.scroll}
           </a>
         </motion.div>
       </div>

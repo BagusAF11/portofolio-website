@@ -2,45 +2,12 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-
-const experiences = [
-  {
-    period: "2024 — Present",
-    role: "Digital Creative Assistant",
-    company: "Freelance",
-    description:
-      "Providing creative digital solutions for clients including graphic design, content creation, and visual communication services.",
-    tags: ["Photoshop", "Design", "Content"],
-  },
-  {
-    period: "2023 — 2024",
-    role: "Customer Service Representative",
-    company: "Retail Operations",
-    description:
-      "Managed customer interactions, resolved inquiries, and maintained high satisfaction ratings through effective communication and problem-solving.",
-    tags: ["Communication", "Service", "Management"],
-  },
-  {
-    period: "2022 — 2023",
-    role: "Printing Operations Specialist",
-    company: "Print Services",
-    description:
-      "Operated printing equipment, managed quality control processes, and ensured timely delivery of print materials meeting client specifications.",
-    tags: ["Operations", "Quality Control", "Production"],
-  },
-  {
-    period: "2021 — Present",
-    role: "Management Student",
-    company: "University",
-    description:
-      "Pursuing a degree in Management with focus on business strategy, organizational behavior, and digital transformation in modern enterprises.",
-    tags: ["Strategy", "Leadership", "Analysis"],
-  },
-]
+import { useLanguage } from "@/lib/i18n/context"
 
 export function Experience() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t } = useLanguage()
 
   return (
     <section id="experience" className="border-t border-border py-32 lg:py-40" ref={ref}>
@@ -53,17 +20,18 @@ export function Experience() {
             className="lg:col-span-4"
           >
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-accent">
-              03 &mdash; Experience
+              {t.experience.section_label}
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-foreground lg:text-4xl">
-              Where I&apos;ve <span className="font-serif italic">been</span>
+              {t.experience.heading}{" "}
+              <span className="font-serif italic">{t.experience.heading_italic}</span>
             </h2>
           </motion.div>
 
           <div className="flex flex-col lg:col-span-8">
-            {experiences.map((exp, i) => (
+            {t.experience.items.map((exp, i) => (
               <motion.div
-                key={exp.role}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{

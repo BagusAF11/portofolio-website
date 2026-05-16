@@ -1,4 +1,10 @@
+"use client"
+
+import { useLanguage } from "@/lib/i18n/context"
+
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="border-t border-border py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -24,10 +30,10 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 pt-8 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Bagus Darmawan. All rights reserved.
+            &copy; {new Date().getFullYear()} Bagus Darmawan. {t.footer.rights}
           </p>
           <p className="text-xs text-muted-foreground">
-            Designed &amp; built with care
+            {t.footer.tagline}
           </p>
         </div>
       </div>
